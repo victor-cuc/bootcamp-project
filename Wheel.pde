@@ -2,7 +2,7 @@ class Wheel {
   
   int slices = 1;
   float rotationAngle = 0;
-  float speed = 0.4;
+  float speed = random(0.2, 0.5);
   ArrayList<String> optionsList = new ArrayList<String>();
   
   void setSlices(int slices) {
@@ -44,7 +44,8 @@ class Wheel {
       rotationAngle += speed;
       speed -= 0.002;
     } else {
-      return;
+      spinning = false;
+      speed = random(0.2, 0.5);
     }
   }
 }
