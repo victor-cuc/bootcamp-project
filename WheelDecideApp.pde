@@ -1,41 +1,43 @@
 //import java.util.ArrayList;
 
-Wheel wheel = new Wheel();
+Wheel wheel;
+Button button;
 
 boolean spinning;
 
 void setup() {
   background(190, 200, 210);
-  size(900, 600);
+  size(600, 900);
 
+  wheel = new Wheel();
   wheel.optionsList.add("Pizza");
   wheel.optionsList.add("Mexican");
   wheel.optionsList.add("Chinese");
   wheel.optionsList.add("Indian");
   wheel.optionsList.add("Burgers");
-  wheel.setSlices(wheel.optionsList.size());
-
   spinning = false;
-  //pushMatrix();
-  //translate(width/2, height/2);
-  //wheel.drawWheel();
-  //popMatrix();
+  
+  button = new Button(width-200, height-100);
 }
 
 void draw() {
 
-  if (spinning) wheel.rotateWheel();
 
-  fill(100);
-  rect(700, 500, 150, 50);
-  fill(1);
-  textSize(30);
-  text("Spin", 720, 530);
+  if (spinning) {
+    wheel.rotateWheel();
+    wheel.drawWheel();
+  }
+  else {  
+    wheel.drawWheel();
+  }
+  button.display();
 }
 
 void mouseClicked() {
-  if (mouseX>700 && mouseX<850 && mouseY>500 && mouseY<550) {
+  if (mouseX>button.xStart && mouseX<(button.xStart+Button.WIDTH) && mouseY>button.yStart && mouseY<(button.yStart+Button.HEIGHT)) {
     println("Click");
     spinning = true;
   }
+  //wheel.optionsList.add("Example");
+  //println(wheel.optionsList);
 }

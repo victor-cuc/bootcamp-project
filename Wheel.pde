@@ -1,22 +1,26 @@
 class Wheel {
   
-  int slices = 1;
-  float rotationAngle = 0;
-  float speed = random(0.2, 0.5);
-  ArrayList<String> optionsList = new ArrayList<String>();
+  float rotationAngle; //use this when drawing
   
-  void setSlices(int slices) {
-    this.slices = slices;
+  
+  float speed;
+  ArrayList<String> optionsList;
+  
+  Wheel() {
+    rotationAngle = 0;
+    speed = random(0.2, 0.5);
+    optionsList = new ArrayList<String>();
   }
   
   void drawWheel() {
-    float angle = 2*PI/slices;
+    float angle = 2*PI/optionsList.size();
     float startAngle = 0;
     float endAngle = angle;
     
-    //pushMatrix();
-    //translate(width/2, height/2);
-    for (int i=0; i<slices; i++) {
+    pushMatrix();
+    translate(width/2, height/2);
+    rotate(rotationAngle);
+    for (int i=0; i<optionsList.size(); i++) {
       fill(85*i, 55*i, 45*i);
       arc(0, 0, 500, 500, startAngle, endAngle); //<>// //<>//
       
@@ -30,22 +34,17 @@ class Wheel {
       startAngle = endAngle;
       endAngle += angle;
     }
-    //popMatrix();
+    popMatrix();
   }
   
   
   void rotateWheel() {
     if (speed > 0) {
-      pushMatrix();
-      translate(width/2, height/2);
-      rotate(rotationAngle);
-      drawWheel();
-      popMatrix();
       rotationAngle += speed;
       speed -= 0.002;
     } else {
-      spinning = false;
-      speed = random(0.2, 0.5);
+      spinning = false; //reset spinning state
+      speed = random(0.2, 0.5); //set the speed to a new random one for the next rotation
     }
   }
 }
