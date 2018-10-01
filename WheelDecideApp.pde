@@ -12,8 +12,12 @@ void setup() {
   wheel.optionsList.add("Indian");
   wheel.optionsList.add("Burgers");
   wheel.setSlices(wheel.optionsList.size());
-  wheel.drawWheel();
+  //pushMatrix();
+  //translate(width/2, height/2);
+  //wheel.drawWheel();
+  //popMatrix();
 }
 
 void draw() {
+  wheel.rotateWheel();
 }

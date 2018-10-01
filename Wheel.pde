@@ -1,6 +1,8 @@
 class Wheel {
   
   int slices = 1;
+  float rotationAngle = 0;
+  float speed = 0.4;
   ArrayList<String> optionsList = new ArrayList<String>();
   
   void setSlices(int slices) {
@@ -12,13 +14,13 @@ class Wheel {
     float startAngle = 0;
     float endAngle = angle;
     
+    //pushMatrix();
+    //translate(width/2, height/2);
     for (int i=0; i<slices; i++) {
-      println(startAngle, endAngle);
-      fill(random(0, 255), random(0, 255), random(0, 255));
-      arc(width/2, height/2, 500, 500, startAngle, endAngle); //<>// //<>//
+      fill(85*i, 55*i, 45*i);
+      arc(0, 0, 500, 500, startAngle, endAngle); //<>// //<>//
       
       pushMatrix();
-      translate(450, 300);
       rotate((startAngle+endAngle)/2);
       textSize(32);
       fill(200, 202, 00);
@@ -28,6 +30,21 @@ class Wheel {
       startAngle = endAngle;
       endAngle += angle;
     }
+    //popMatrix();
   }
   
+  
+  void rotateWheel() {
+    if (speed > 0) {
+      pushMatrix();
+      translate(width/2, height/2);
+      rotate(rotationAngle);
+      drawWheel();
+      popMatrix();
+      rotationAngle += speed;
+      speed -= 0.002;
+    } else {
+      return;
+    }
+  }
 }
