@@ -72,4 +72,24 @@ class Wheel {
   void addUniqueChoice(String str) {
     if (!containsIgnoreCase(str)) optionsList.add(str);
   }
+  
+  void showStartingWheel() {
+    fill(10);
+    ellipse(width/2, height/2, 500, 500);
+    
+    fill(100);
+    textSize(80);
+    textAlign(CENTER, BOTTOM);
+    text("WHEEL", width/2, height/2);
+    
+    fill(100);
+    textAlign(CENTER, TOP);
+    textSize(80);
+    text("DECIDE", width/2, height/2);
+    
+    fill(100);
+    textAlign(CENTER, TOP);
+    textSize(30);
+    text("Add options to start", width/2, height/2+100);
+  }
 }

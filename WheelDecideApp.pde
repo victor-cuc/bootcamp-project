@@ -10,11 +10,11 @@ void setup() {
   size(1200, 800);
 
   wheel = new Wheel();
-  wheel.optionsList.add("Pizza");
-  wheel.optionsList.add("Mexican");
-  wheel.optionsList.add("Chinese");
-  wheel.optionsList.add("Indian");
-  wheel.optionsList.add("Burgers");
+  //wheel.optionsList.add("Pizza");
+  //wheel.optionsList.add("Mexican");
+  //wheel.optionsList.add("Chinese");
+  //wheel.optionsList.add("Indian");
+  //wheel.optionsList.add("Burgers");
   
   spinning = false;
   isDisplayingResult = false;
@@ -25,23 +25,26 @@ void setup() {
 
 void draw() {
   background(190, 200, 210);
-
-  if (spinning) {
-    wheel.rotateWheel();
-    wheel.drawWheel();
-  }
-  else {  
-    wheel.drawWheel();
-  }
   button.display();
   inputBox.display();
-  
-  if (isDisplayingResult) {
-    displayWinner(wheel.getWinner());
+
+  if (wheel.optionsList.size() > 0) {
+    if (spinning) {
+      wheel.rotateWheel();
+      wheel.drawWheel();
+    } else {  
+      wheel.drawWheel();
+    }
+    
+    if (isDisplayingResult) {
+      displayWinner(wheel.getWinner());
+    }
+    
+    fill(255, 191, 0);
+    triangle(width/2+235, height/2, width/2+265, height/2+15, width/2+265, height/2-15);
+  } else {
+    wheel.showStartingWheel();
   }
-  
-  fill(255, 191, 0);
-  triangle(width/2+235, height/2, width/2+265, height/2+15, width/2+265, height/2-15);
 }
 
 void mouseClicked() {
