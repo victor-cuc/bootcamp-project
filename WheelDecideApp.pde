@@ -3,10 +3,11 @@ Button button;
 InputBox inputBox;
 
 boolean spinning;
+boolean isDisplayingResult;
 
 void setup() {
   background(190, 200, 210);
-  size(900, 600);
+  size(1200, 800);
 
   wheel = new Wheel();
   wheel.optionsList.add("Pizza");
@@ -14,9 +15,11 @@ void setup() {
   wheel.optionsList.add("Chinese");
   wheel.optionsList.add("Indian");
   wheel.optionsList.add("Burgers");
-  spinning = false;
   
-  button = new Button(width-200, height-100);
+  spinning = false;
+  isDisplayingResult = false;
+  
+  button = new Button();
   inputBox = new InputBox();
 }
 
@@ -33,6 +36,10 @@ void draw() {
   button.display();
   inputBox.display();
   
+  if (isDisplayingResult) {
+    displayWinner(wheel.getWinner());
+  }
+  
   fill(255, 191, 0);
   triangle(width/2+235, height/2, width/2+265, height/2+15, width/2+265, height/2-15);
 }
@@ -41,6 +48,7 @@ void mouseClicked() {
   if (mouseX>button.xStart && mouseX<(button.xStart+Button.WIDTH) && mouseY>button.yStart && mouseY<(button.yStart+Button.HEIGHT)) {
     println("Spin button clicked");
     spinning = true;
+    isDisplayingResult = false;
   }
   //wheel.optionsList.add("Example");
   //println(wheel.optionsList);
@@ -58,4 +66,11 @@ void keyPressed() {
   } else if (keyCode != SHIFT && keyCode != CONTROL && keyCode != ALT) {
     inputBox.addChar(key);
   }
+}
+
+void displayWinner(String winner) {
+  fill(1);
+  textSize(70);
+  textAlign(CENTER);
+  text(winner, width/2, 80);
 }

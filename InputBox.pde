@@ -6,8 +6,10 @@ class InputBox {
   }
   
   void display() {
+    textSize(30);
+    textAlign(LEFT);
     fill(0, 0, 0);
-    text(inputString, 0, 0, width, height);
+    text(inputString, 30, 200, width, height);
   }
   
   void removeLastChar() {

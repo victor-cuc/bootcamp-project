@@ -36,6 +36,7 @@ class Wheel {
       
       pushMatrix();
       rotate((startAngle+endAngle)/2);
+      textAlign(LEFT);
       textSize(32);
       fill(200, 202, 00);
       text(optionsList.get(i), 100, 0);
@@ -53,10 +54,9 @@ class Wheel {
       rotationAngle += speed;
       speed -= 0.002;
     } else {
-      spinning = false; //reset spinning state
+      spinning = false;
+      isDisplayingResult = true;//reset spinning state
       speed = random(0.2, 0.5); //set the speed to a new random one for the next rotation
-      //println(rotationAngle);
-      //println(rotationAngle%(2*PI)/arcAngle);
       println(getWinner());
     }
   }
