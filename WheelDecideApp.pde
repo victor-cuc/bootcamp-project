@@ -32,11 +32,14 @@ void draw() {
   }
   button.display();
   inputBox.display();
+  
+  fill(255, 191, 0);
+  triangle(width/2+235, height/2, width/2+265, height/2+15, width/2+265, height/2-15);
 }
 
 void mouseClicked() {
   if (mouseX>button.xStart && mouseX<(button.xStart+Button.WIDTH) && mouseY>button.yStart && mouseY<(button.yStart+Button.HEIGHT)) {
-    println("Click");
+    println("Spin button clicked");
     spinning = true;
   }
   //wheel.optionsList.add("Example");
