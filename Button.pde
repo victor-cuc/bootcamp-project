@@ -1,21 +1,20 @@
 class Button {
-  float xStart, yStart;
+  float xStart, yStart, buttonWidth, buttonHeight;
   
-  static final float WIDTH = 200;
-  static final float HEIGHT = 70;
-
-  Button() {
-    xStart = (width-WIDTH)/2;
-    yStart = height-100;
+  Button(float buttonWidth, float buttonHeight, float xStart, float yStart) {
+    this.xStart = xStart;
+    this.yStart = yStart;
+    this.buttonHeight = buttonHeight;
+    this.buttonWidth = buttonWidth;
   }
   
   void display() {
     fill(255, 191, 0);
-    rect(xStart, yStart, WIDTH, HEIGHT);
+    rect(xStart, yStart, buttonWidth, buttonHeight);
     
     fill(1);
     textSize(50);
     textAlign(CENTER, CENTER);
-    text("SPIN", width/2, yStart+HEIGHT/2-5);
+    text("SPIN", width/2, yStart+buttonHeight/2-5);
   }
 }

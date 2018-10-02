@@ -1,5 +1,5 @@
 Wheel wheel;
-Button button;
+Button spinButton;
 InputBox inputBox;
 
 boolean spinning;
@@ -19,13 +19,13 @@ void setup() {
   spinning = false;
   isDisplayingResult = false;
   
-  button = new Button();
+  spinButton = new Button(200, 70, (width-200)/2, height-100);
   inputBox = new InputBox();
 }
 
 void draw() {
   background(190, 200, 210);
-  button.display();
+  spinButton.display();
   inputBox.display();
 
   if (wheel.optionsList.size() > 0) {
@@ -48,7 +48,7 @@ void draw() {
 }
 
 void mouseClicked() {
-  if (mouseX>button.xStart && mouseX<(button.xStart+Button.WIDTH) && mouseY>button.yStart && mouseY<(button.yStart+Button.HEIGHT)) {
+  if (mouseX>spinButton.xStart && mouseX<(spinButton.xStart+spinButton.buttonWidth) && mouseY>spinButton.yStart && mouseY<(spinButton.yStart+spinButton.buttonHeight)) {
     println("Spin button clicked");
     spinning = true;
     isDisplayingResult = false;
