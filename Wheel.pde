@@ -1,5 +1,6 @@
 class Wheel {
   
+  float arcAngle;
   float rotationAngle; //use this when drawing
   
   
@@ -12,10 +13,15 @@ class Wheel {
     optionsList = new ArrayList<String>();
   }
   
+  void getWinner() {
+    int winnerIndex = (int) Math.ceil(rotationAngle%(2*PI)/arcAngle);
+    println(winnerIndex);
+  }
+  
   void drawWheel() {
-    float angle = 2*PI/optionsList.size();
+    arcAngle = 2*PI/optionsList.size();
     float startAngle = 0;
-    float endAngle = angle;
+    float endAngle = arcAngle;
     
     pushMatrix();
     translate(width/2, height/2);
@@ -32,7 +38,7 @@ class Wheel {
       popMatrix();
       
       startAngle = endAngle;
-      endAngle += angle;
+      endAngle += arcAngle;
     }
     popMatrix();
   }
@@ -45,6 +51,9 @@ class Wheel {
     } else {
       spinning = false; //reset spinning state
       speed = random(0.2, 0.5); //set the speed to a new random one for the next rotation
+      //println(rotationAngle);
+      //println(rotationAngle%(2*PI)/arcAngle);
+      getWinner();
     }
   }
   
