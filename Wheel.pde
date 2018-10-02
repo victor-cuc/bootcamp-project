@@ -47,4 +47,16 @@ class Wheel {
       speed = random(0.2, 0.5); //set the speed to a new random one for the next rotation
     }
   }
+  
+  boolean containsIgnoreCase(String str){
+    for(String i : optionsList){
+        if(i.equalsIgnoreCase(str))
+            return true;
+    }
+    return false;
+  }
+  
+  void addUniqueChoice(String str) {
+    if (!containsIgnoreCase(str)) optionsList.add(str);
+  }
 }
