@@ -1,12 +1,13 @@
 class InputBox {
-  private String inputString;
-  private float xStart, yStart, boxWidth, boxHeight;
+  String defaultString, inputString;
+  float xStart, yStart, boxWidth, boxHeight;
   
   
-  InputBox(float xStart, float yStart, float boxWidth, float boxHeight, String inputString) {
+  InputBox(float xStart, float yStart, float boxWidth, float boxHeight, String defaultString) {
     this.xStart = xStart;
     this.yStart = yStart;
-    this.inputString = inputString;
+    this.defaultString = defaultString;
+    inputString = defaultString;
     this.boxHeight = boxHeight;
     this.boxWidth = boxWidth;
   }
@@ -26,14 +27,25 @@ class InputBox {
   }
   
   void addChar(char key) {
+    if (isDefault()) {
+      inputString = "";
+    }
     inputString += key;
   }
   
   void reset() {
-    inputString = "Add a new choice";
+    inputString = defaultString;
   }
   
   String getInputString() {
     return inputString;
+  }
+  
+  boolean isDefault() {
+     if (inputString.compareTo(defaultString) == 0) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

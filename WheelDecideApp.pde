@@ -53,12 +53,22 @@ void mouseClicked() {
     spinning = true;
     isDisplayingResult = false;
   }
+  
+  else if (mouseX>inputBox.xStart && mouseX<(inputBox.xStart+inputBox.boxWidth) && mouseY>inputBox.yStart && mouseY<(inputBox.yStart+inputBox.boxHeight)) {
+    println("Input box clicked");
+    if (inputBox.isDefault()) {
+      inputBox.inputString = "";
+    }
+  }
   //wheel.optionsList.add("Example");
   //println(wheel.optionsList);
 }
 
 
 void keyPressed() {
+  println(inputBox.defaultString, inputBox.inputString);
+  println((inputBox.defaultString == inputBox.inputString));
+
   println(key);
   if (keyCode == BACKSPACE) {
     inputBox.removeLastChar();
@@ -70,6 +80,9 @@ void keyPressed() {
   } else if (keyCode != SHIFT && keyCode != CONTROL && keyCode != ALT) {
     inputBox.addChar(key);
   }
+  
+  println(inputBox.defaultString, inputBox.inputString);
+  println((inputBox.defaultString == inputBox.inputString));
 }
 
 void displayWinner(String winner) {
