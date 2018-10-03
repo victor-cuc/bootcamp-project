@@ -1,15 +1,24 @@
 class InputBox {
   private String inputString;
+  private float xStart, yStart, boxWidth, boxHeight;
   
-  InputBox() {
-    inputString = "Add a new choice";
+  
+  InputBox(float xStart, float yStart, float boxWidth, float boxHeight, String inputString) {
+    this.xStart = xStart;
+    this.yStart = yStart;
+    this.inputString = inputString;
+    this.boxHeight = boxHeight;
+    this.boxWidth = boxWidth;
   }
   
   void display() {
-    textSize(30);
-    textAlign(LEFT);
+    fill(255);
+    rect(xStart, yStart, boxWidth, boxHeight);
+    
+    textSize(25);
+    textAlign(LEFT, CENTER);
     fill(0, 0, 0);
-    text(inputString, 30, 200, width, height);
+    text(inputString, xStart+5, yStart+boxHeight/2);
   }
   
   void removeLastChar() {
@@ -21,7 +30,7 @@ class InputBox {
   }
   
   void reset() {
-    inputString = "";
+    inputString = "Add a new choice";
   }
   
   String getInputString() {

@@ -36,9 +36,9 @@ class Wheel {
       
       pushMatrix();
       rotate((startAngle+endAngle)/2);
-      textAlign(LEFT);
+      textAlign(LEFT, CENTER);
       textSize(32);
-      fill(200, 202, 00);
+      fill(255, 191, 0);
       text(optionsList.get(i), 100, 0);
       popMatrix();
       

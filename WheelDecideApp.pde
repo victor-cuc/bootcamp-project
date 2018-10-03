@@ -20,7 +20,7 @@ void setup() {
   isDisplayingResult = false;
   
   spinButton = new Button(200, 70, (width-200)/2, height-100);
-  inputBox = new InputBox();
+  inputBox = new InputBox(50, 200, 300, 50, "Add a new choice");
 }
 
 void draw() {
@@ -48,7 +48,7 @@ void draw() {
 }
 
 void mouseClicked() {
-  if (mouseX>spinButton.xStart && mouseX<(spinButton.xStart+spinButton.buttonWidth) && mouseY>spinButton.yStart && mouseY<(spinButton.yStart+spinButton.buttonHeight)) {
+  if (wheel.optionsList.size() > 0 && mouseX>spinButton.xStart && mouseX<(spinButton.xStart+spinButton.buttonWidth) && mouseY>spinButton.yStart && mouseY<(spinButton.yStart+spinButton.buttonHeight)) {
     println("Spin button clicked");
     spinning = true;
     isDisplayingResult = false;
@@ -66,6 +66,7 @@ void keyPressed() {
     inputBox.reset();
   } else if (keyCode == ENTER) {
     wheel.addUniqueChoice(inputBox.getInputString());
+    inputBox.reset();
   } else if (keyCode != SHIFT && keyCode != CONTROL && keyCode != ALT) {
     inputBox.addChar(key);
   }
@@ -75,5 +76,5 @@ void displayWinner(String winner) {
   fill(1);
   textSize(70);
   textAlign(CENTER);
-  text(winner, width/2, 80);
+  text(winner, width/2, 85);
 }
