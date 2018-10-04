@@ -1,7 +1,10 @@
+import org.gicentre.utils.colour.*;
+
 class Wheel {
   
   float arcAngle;
   float rotationAngle; //use this when drawing
+  ColourTable colourTable;
   
   
   float speed;
@@ -11,6 +14,7 @@ class Wheel {
     rotationAngle = 0;
     speed = random(0.2, 0.5);
     optionsList = new ArrayList<String>();
+    colourTable = ColourTable.getPresetColourTable(ColourTable.RD_YL_GN,0,10);
   }
   
   String getWinner() {
@@ -31,7 +35,7 @@ class Wheel {
     translate(width/2, height/2);
     rotate(rotationAngle);
     for (int i=0; i<optionsList.size(); i++) {
-      fill(85*i, 55*i, 45*i);
+      fill(colourTable.findColour(i));
       arc(0, 0, 500, 500, startAngle, endAngle); //<>// //<>// //<>//
       
       pushMatrix();
@@ -74,7 +78,7 @@ class Wheel {
   }
   
   void addChoice(String str) {
-    if (!containsIgnoreCase(str)) optionsList.add(str);
+    if (!containsIgnoreCase(str) && optionsList.size() <= 10) optionsList.add(str);
   }
   
   void showStartingWheel() {

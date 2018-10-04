@@ -16,7 +16,7 @@ void setup() {
   spinButton = new Button((width-200)/2, height-130, 200, 60, "SPIN");
   resetButton = new Button((width-150)/2, height-60, 150, 40, "RESET");
   resetButton.labelTextSize = 30;
-  resetButton.changeColor(133, 133, 133);
+  resetButton.changeColor(color(111, 211, 111));
   inputBox = new InputBox(50, 200, 300, 50, "Add a new choice");
 }
 
