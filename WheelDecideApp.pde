@@ -58,6 +58,7 @@ void mouseClicked() {
   
   else if (mouseX>resetButton.xStart && mouseX<(resetButton.xStart+resetButton.buttonWidth) && mouseY>resetButton.yStart && mouseY<(resetButton.yStart+resetButton.buttonHeight)) {
     wheel.optionsList.clear();
+    wheel.rotationAngle = 2*PI; //reset wheel to start position
   }
   
   else if (mouseX>inputBox.xStart && mouseX<(inputBox.xStart+inputBox.boxWidth) && mouseY>inputBox.yStart && mouseY<(inputBox.yStart+inputBox.boxHeight)) {
