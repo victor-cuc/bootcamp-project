@@ -6,7 +6,7 @@ boolean spinning;
 boolean isDisplayingResult;
 
 void setup() {
-  background(190, 200, 210);
+  background(249, 217, 89);
   size(1200, 800);
 
   spinning = false;
@@ -14,14 +14,14 @@ void setup() {
   
   wheel = new Wheel();
   spinButton = new Button((width-200)/2, height-130, 200, 60, "SPIN");
+  spinButton.labelTextSize = 50;
+  spinButton.changeColor(color(255, 191, 0));
   resetButton = new Button((width-150)/2, height-60, 150, 40, "RESET");
-  resetButton.labelTextSize = 30;
-  resetButton.changeColor(color(111, 211, 111));
   inputBox = new InputBox(50, 200, 300, 50, "Add a new choice");
 }
 
 void draw() {
-  background(190, 200, 210);
+  background(249, 217, 89);
   spinButton.display();
   resetButton.display();
   inputBox.display();
@@ -35,7 +35,7 @@ void draw() {
     }
     
     if (isDisplayingResult) {
-      displayWinner(wheel.getWinner());
+      displayWinner(wheel.optionsList.get(wheel.getWinnerIndex()), wheel.colourTable.findColour(wheel.getWinnerIndex()));
     }
     
     fill(255, 191, 0);
@@ -62,6 +62,7 @@ void mouseClicked() {
       inputBox.inputString = "";
     }
   }
+  else clickedInsideWheel();
 }
 
 void keyPressed() {
@@ -73,14 +74,29 @@ void keyPressed() {
   } else if (keyCode == ENTER) {
     wheel.addChoice(inputBox.getInputString());
     inputBox.reset();
+    isDisplayingResult = false;
   } else if (keyCode != SHIFT && keyCode != CONTROL && keyCode != ALT) {
     inputBox.addChar(key);
   }
 }
 
-void displayWinner(String winner) {
-  fill(1);
+void displayWinner(String winner, color winnerTextColor) {
+  fill(winnerTextColor);
   textSize(70);
   textAlign(CENTER);
   text(winner, width/2, 85);
+}
+
+boolean clickedInsideWheel() {
+  double distanceFromCenter = Math.sqrt(Math.pow((mouseX-width/2), 2) + Math.pow((mouseY-height/2), 2));
+  if (
+    mouseX > width/2-250 && mouseX < width/2+250 && 
+    mouseY > height/2-250 && mouseY < height/2+250 &&
+    distanceFromCenter <= 250
+    ) {
+    println("Clicked inside the wheel");
+    return true;
+  }
+  else 
+    return false;
 }

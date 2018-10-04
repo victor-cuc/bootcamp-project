@@ -9,7 +9,7 @@ class Button {
     this.buttonWidth = buttonWidth;
     this.buttonHeight = buttonHeight;
     this.label = label;
-    labelTextSize = 50;
+    labelTextSize = 30;
     this.buttonColor = color(111, 111, 111);
   }
   

@@ -17,13 +17,12 @@ class Wheel {
     colourTable = ColourTable.getPresetColourTable(ColourTable.RD_YL_GN,0,10);
   }
   
-  String getWinner() {
+  int getWinnerIndex() {
     /** Calculates how many times the arcAngle the wheel has spun and rounds it. 
     As the wheel rotates clockwise, this gives the index from the end of the list. **/
     int indexFromEnd = (int) Math.ceil(rotationAngle%(2*PI)/arcAngle);
     // Gives the index from start
-    int winnerIndex = optionsList.size()-indexFromEnd;
-    return optionsList.get(winnerIndex);
+    return optionsList.size()-indexFromEnd;
   }
   
   void drawWheel() {
@@ -65,7 +64,7 @@ class Wheel {
       spinning = false;
       isDisplayingResult = true;//reset spinning state
       speed = random(0.2, 0.5); //set the speed to a new random one for the next rotation
-      println(getWinner());
+      println(optionsList.get(getWinnerIndex()));
     }
   }
   
