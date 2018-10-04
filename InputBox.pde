@@ -19,7 +19,7 @@ class InputBox {
     textSize(25);
     textAlign(LEFT, CENTER);
     fill(0, 0, 0);
-    text(inputString, xStart+5, yStart+boxHeight/2);
+    text(inputString, xStart+10, yStart+boxHeight/2);
   }
   
   void removeLastChar() {

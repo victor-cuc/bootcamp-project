@@ -86,17 +86,17 @@ class Wheel {
     fill(10);
     ellipse(width/2, height/2, 500, 500);
     
-    fill(100);
+    fill(255, 191, 0);
     textSize(80);
     textAlign(CENTER, BOTTOM);
     text("WHEEL", width/2, height/2);
     
-    fill(100);
+    fill(255, 191, 0);
     textAlign(CENTER, TOP);
     textSize(80);
     text("DECIDE", width/2, height/2);
     
-    fill(100);
+    fill(255);
     textAlign(CENTER, TOP);
     textSize(30);
     text("Add options to start", width/2, height/2+100);

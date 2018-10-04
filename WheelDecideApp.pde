@@ -17,11 +17,11 @@ void setup() {
   //wheel.addChoice("Chinese");
   //wheel.addChoice("Burgers");
   
-  spinButton = new Button((width-200)/2, height-130, 200, 60, "SPIN");
+  spinButton = new Button((width-200)/2, height-130, 200, 60, "SPIN", color(0));
   spinButton.labelTextSize = 50;
   spinButton.changeColor(color(255, 191, 0));
-  resetButton = new Button((width-150)/2, height-60, 150, 40, "RESET");
-  inputBox = new InputBox(50, 200, 300, 50, "Add a new choice");
+  resetButton = new Button((width-150)/2, height-60, 150, 40, "RESET", color(255, 191, 0));
+  inputBox = new InputBox(20, height/2-25, 300, 50, "Add a new choice");
 }
 
 void draw() {
