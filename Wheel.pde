@@ -36,10 +36,14 @@ class Wheel {
       
       pushMatrix();
       rotate((startAngle+endAngle)/2);
-      textAlign(LEFT, CENTER);
-      textSize(32);
+      textAlign(CENTER, CENTER);
+      if (optionsList.get(i).length() <= 10) {
+        textSize(32);
+      } else {
+        textSize(20);
+      }
       fill(255, 191, 0);
-      text(optionsList.get(i), 100, 0);
+      text(optionsList.get(i), 130, 0);
       popMatrix();
       
       startAngle = endAngle;
@@ -69,7 +73,7 @@ class Wheel {
     return false;
   }
   
-  void addUniqueChoice(String str) {
+  void addChoice(String str) {
     if (!containsIgnoreCase(str)) optionsList.add(str);
   }
   

@@ -1,5 +1,5 @@
 Wheel wheel;
-Button spinButton;
+Button spinButton, resetButton;;
 InputBox inputBox;
 
 boolean spinning;
@@ -9,23 +9,21 @@ void setup() {
   background(190, 200, 210);
   size(1200, 800);
 
-  wheel = new Wheel();
-  //wheel.optionsList.add("Pizza");
-  //wheel.optionsList.add("Mexican");
-  //wheel.optionsList.add("Chinese");
-  //wheel.optionsList.add("Indian");
-  //wheel.optionsList.add("Burgers");
-  
   spinning = false;
   isDisplayingResult = false;
   
-  spinButton = new Button(200, 70, (width-200)/2, height-100);
+  wheel = new Wheel();
+  spinButton = new Button((width-200)/2, height-130, 200, 60, "SPIN");
+  resetButton = new Button((width-150)/2, height-60, 150, 40, "RESET");
+  resetButton.labelTextSize = 30;
+  resetButton.changeColor(133, 133, 133);
   inputBox = new InputBox(50, 200, 300, 50, "Add a new choice");
 }
 
 void draw() {
   background(190, 200, 210);
   spinButton.display();
+  resetButton.display();
   inputBox.display();
 
   if (wheel.optionsList.size() > 0) {
@@ -48,10 +46,14 @@ void draw() {
 }
 
 void mouseClicked() {
-  if (wheel.optionsList.size() > 0 && mouseX>spinButton.xStart && mouseX<(spinButton.xStart+spinButton.buttonWidth) && mouseY>spinButton.yStart && mouseY<(spinButton.yStart+spinButton.buttonHeight)) {
+  if (wheel.optionsList.size() > 1 && mouseX>spinButton.xStart && mouseX<(spinButton.xStart+spinButton.buttonWidth) && mouseY>spinButton.yStart && mouseY<(spinButton.yStart+spinButton.buttonHeight)) {
     println("Spin button clicked");
     spinning = true;
     isDisplayingResult = false;
+  } 
+  
+  else if (mouseX>resetButton.xStart && mouseX<(resetButton.xStart+resetButton.buttonWidth) && mouseY>resetButton.yStart && mouseY<(resetButton.yStart+resetButton.buttonHeight)) {
+    wheel.optionsList.clear();
   }
   
   else if (mouseX>inputBox.xStart && mouseX<(inputBox.xStart+inputBox.boxWidth) && mouseY>inputBox.yStart && mouseY<(inputBox.yStart+inputBox.boxHeight)) {
@@ -60,29 +62,20 @@ void mouseClicked() {
       inputBox.inputString = "";
     }
   }
-  //wheel.optionsList.add("Example");
-  //println(wheel.optionsList);
 }
 
-
 void keyPressed() {
-  println(inputBox.defaultString, inputBox.inputString);
-  println((inputBox.defaultString == inputBox.inputString));
-
   println(key);
   if (keyCode == BACKSPACE) {
     inputBox.removeLastChar();
   } else if (keyCode == DELETE) {
     inputBox.reset();
   } else if (keyCode == ENTER) {
-    wheel.addUniqueChoice(inputBox.getInputString());
+    wheel.addChoice(inputBox.getInputString());
     inputBox.reset();
   } else if (keyCode != SHIFT && keyCode != CONTROL && keyCode != ALT) {
     inputBox.addChar(key);
   }
-  
-  println(inputBox.defaultString, inputBox.inputString);
-  println((inputBox.defaultString == inputBox.inputString));
 }
 
 void displayWinner(String winner) {

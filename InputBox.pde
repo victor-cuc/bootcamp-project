@@ -30,7 +30,9 @@ class InputBox {
     if (isDefault()) {
       inputString = "";
     }
-    inputString += key;
+    if (inputString.length() < 17) {
+      inputString += key;
+    }
   }
   
   void reset() {
