@@ -11,7 +11,7 @@ class Wheel {
   ArrayList<String> optionsList;
   
   Wheel() {
-    rotationAngle = 0;
+    rotationAngle = 2*PI;
     speed = random(0.2, 0.5);
     optionsList = new ArrayList<String>();
     colourTable = ColourTable.getPresetColourTable(ColourTable.RD_YL_GN,0,10);
@@ -20,6 +20,7 @@ class Wheel {
   int getWinnerIndex() {
     /** Calculates how many times the arcAngle the wheel has spun and rounds it. 
     As the wheel rotates clockwise, this gives the index from the end of the list. **/
+    //println(rotationAngle%(2*PI)/arcAngle);
     int indexFromEnd = (int) Math.ceil(rotationAngle%(2*PI)/arcAngle);
     // Gives the index from start
     return optionsList.size()-indexFromEnd;
@@ -65,6 +66,7 @@ class Wheel {
       isDisplayingResult = true;//reset spinning state
       speed = random(0.2, 0.5); //set the speed to a new random one for the next rotation
       println(optionsList.get(getWinnerIndex()));
+      println(rotationAngle);
     }
   }
   
@@ -98,5 +100,29 @@ class Wheel {
     textAlign(CENTER, TOP);
     textSize(30);
     text("Add options to start", width/2, height/2+100);
+  }
+  
+  int getIndex(float x, float y) {
+    int index;
+    float xCenter = width/2;
+    float yCenter = height/2;
+    double atanAngle = Math.atan((height/2-y) / (x-width/2));
+    float angleFromStart = 0;
+    //quadrant 1
+    if (x>xCenter && y<yCenter) {
+      angleFromStart = 2*PI - (float)atanAngle;
+    } else if (x>xCenter && y>yCenter) {
+      angleFromStart = -(float)atanAngle;
+    } else if (x<xCenter && y>yCenter) {
+      angleFromStart = PI-(float)atanAngle;
+    } else if (x<xCenter && y<yCenter) {
+      angleFromStart = PI-(float)atanAngle;
+    }
+    
+    index = optionsList.size() - (int) Math.ceil((rotationAngle-angleFromStart)%(2*PI)/arcAngle);
+    
+    //println(Math.toDegrees((rotationAngle-angleFromStart)%(2*PI)/arcAngle));
+    //println("INDEX OF CLICK", index);
+    return index;
   }
 }

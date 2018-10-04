@@ -13,6 +13,10 @@ void setup() {
   isDisplayingResult = false;
   
   wheel = new Wheel();
+  //wheel.addChoice("Pizza");
+  //wheel.addChoice("Chinese");
+  //wheel.addChoice("Burgers");
+  
   spinButton = new Button((width-200)/2, height-130, 200, 60, "SPIN");
   spinButton.labelTextSize = 50;
   spinButton.changeColor(color(255, 191, 0));
@@ -62,16 +66,21 @@ void mouseClicked() {
       inputBox.inputString = "";
     }
   }
-  else clickedInsideWheel();
+  else if (clickedInsideWheel() && wheel.optionsList.size() > 0) {
+    int indexToRemove = wheel.getIndex(mouseX, mouseY);
+    println("Removed item at index " + indexToRemove);
+    wheel.optionsList.remove(indexToRemove);
+  }
 }
 
 void keyPressed() {
-  println(key);
+  //println(key);
   if (keyCode == BACKSPACE) {
     inputBox.removeLastChar();
   } else if (keyCode == DELETE) {
     inputBox.reset();
   } else if (keyCode == ENTER) {
+    println(inputBox.inputString);
     wheel.addChoice(inputBox.getInputString());
     inputBox.reset();
     isDisplayingResult = false;
